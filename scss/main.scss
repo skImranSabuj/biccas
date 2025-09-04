@@ -1,0 +1,197 @@
+/* Variables */
+$primary-color: #54BD95;
+$secondary-color: #333;
+$accent-color: #A6A6A6;
+$light-color: #f9f9f9;
+$font-stack: "Inter", sans-serif;
+
+/* Mixins */
+@mixin respond($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (min-width: 768px) { @content; }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: 1024px) { @content; }
+  }
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-stack;
+  line-height: 1.6;
+  color: $secondary-color;
+  background-color: #54BD95;
+}
+
+/* Layout */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  background: $light-color;
+  border-bottom: 1px solid #eee;
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+
+    .logo {
+      font-weight: 500;
+      color: $primary-color;
+      font-size: 50px;
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: none;
+
+      li {
+        display: inline-block;
+        margin-left: 1.5rem;
+
+        a {
+          text-decoration: none;
+          color: $accent-color;
+          transition: color 0.3s;
+
+          &:hover {
+            color: $secondary-color;
+          }
+
+          &.active {
+            font-weight: 700;
+            color: $secondary-color;
+          }
+        }
+      }
+    }
+
+    /* Auth Buttons (Login / Sign Up) */
+    .nav-auth {
+      display: none; /* hidden on mobile */
+      margin-left: 1.5rem;
+
+      .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        text-decoration: none;
+        // font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .login-btn {
+        // border: 1px solid $primary-color;
+        color: $accent-color;
+        background: transparent;
+
+        &:hover {
+        //   background: $primary-color;
+          color: $primary-color;
+        }
+      }
+
+      .signup-btn {
+        margin-left: 0.75rem;
+        background: $primary-color;
+        color: white;
+
+        &:hover {
+          background: darken($primary-color, 10%);
+        }
+      }
+    }
+
+    .nav-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: block;
+    }
+
+    /* Tablet & Desktop */
+    @include respond(tablet) {
+      .nav-menu {
+        display: block;
+      }
+      .nav-auth {
+        display: flex;
+        align-items: center;
+      }
+      .nav-toggle {
+        display: none;
+      }
+    }
+  }
+}
+
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 5rem 0;
+  h1 {
+    font-size: 2.5rem;
+  }
+  p {
+    margin: 1rem 0;
+  }
+  .btn {
+    display: inline-block;
+    background: $primary-color;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+    &:hover {
+      background: darken($primary-color, 10%);
+    }
+  }
+}
+
+/* Sections */
+.section {
+  padding: 4rem 0;
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  @include respond(tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  padding: 2rem;
+  background: $light-color;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  background: $secondary-color;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
