@@ -1,17 +1,21 @@
 /* Variables */
-$primary-color: #54BD95;
+$primary-color: #54bd95;
 $secondary-color: #333;
-$accent-color: #A6A6A6;
+$accent-color: #a6a6a6;
 $light-color: #f9f9f9;
 $font-stack: "Inter", sans-serif;
 
 /* Mixins */
 @mixin respond($breakpoint) {
   @if $breakpoint == tablet {
-    @media (min-width: 768px) { @content; }
+    @media (min-width: 768px) {
+      @content;
+    }
   }
   @if $breakpoint == desktop {
-    @media (min-width: 1024px) { @content; }
+    @media (min-width: 1024px) {
+      @content;
+    }
   }
 }
 
@@ -26,7 +30,7 @@ body {
   font-family: $font-stack;
   line-height: 1.6;
   color: $secondary-color;
-  background-color: #54BD95;
+  background: linear-gradient(to right, #d9efea 0%, #f1f1ef 50%, #e9f2ed 100%);
 }
 
 /* Layout */
@@ -38,7 +42,6 @@ body {
 
 /* Header */
 .header {
-  background: $light-color;
   border-bottom: 1px solid #eee;
 
   .nav {
@@ -48,7 +51,7 @@ body {
     padding: 1rem 0;
 
     .logo {
-      font-weight: 500;
+      font-weight: 600;
       color: $primary-color;
       font-size: 50px;
       text-decoration: none;
@@ -98,7 +101,7 @@ body {
         background: transparent;
 
         &:hover {
-        //   background: $primary-color;
+          //   background: $primary-color;
           color: $primary-color;
         }
       }
@@ -138,27 +141,118 @@ body {
   }
 }
 
-
-/* Hero */
 .hero {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 5rem 0;
-  h1 {
-    font-size: 2.5rem;
+
+  @include respond(tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
   }
-  p {
-    margin: 1rem 0;
+
+  .hero-content {
+    max-width: 550px;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: $secondary-color;
+      position: relative;
+
+      @include respond(tablet) {
+        font-size: 3.5rem; // ~56px
+      }
+
+      @include respond(desktop) {
+        font-size: 4.375rem; // 70px
+      }
+
+      .underline {
+        display: block;
+        width: 120px;
+        height: 5px;
+        background: $primary-color;
+        border-radius: 3px;
+        margin-top: 0.5rem;
+      }
+    }
+
+    p {
+      margin: 1.5rem 0;
+      font-size: 1rem;
+      line-height: 1.6;
+
+      @include respond(tablet) {
+        font-size: 1.0625rem;
+      }
+
+      @include respond(desktop) {
+        font-size: 1.125rem;
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+
+      .btn {
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+      }
+
+      .primary-btn {
+        background: $primary-color;
+        color: white;
+
+        &:hover {
+          background: darken($primary-color, 10%);
+        }
+      }
+
+      .secondary-btn {
+        background: transparent;
+        color: $primary-color;
+        gap: 0.5rem;
+
+        &:hover {
+          background: rgba($primary-color, 0.1);
+        }
+
+        .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
   }
-  .btn {
-    display: inline-block;
-    background: $primary-color;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s;
-    &:hover {
-      background: darken($primary-color, 10%);
+
+  .hero-image {
+    margin-top: 2rem;
+    @include respond(tablet) {
+      margin-top: 0;
+    }
+
+    img {
+      max-width: 600px;
+      width: 100%;
+      position: relative;
+      right: -50px;
     }
   }
 }
